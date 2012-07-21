@@ -1,0 +1,17 @@
+{
+    "hash": "1297737f8153e597bf000cc7ebfd622d",
+    "packages": [
+        {
+            "package": "drupal/drupal",
+            "version": "7.14"
+        }
+    ],
+    "packages-dev": null,
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": [
+
+    ]
+}
