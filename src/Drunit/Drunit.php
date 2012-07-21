@@ -24,10 +24,11 @@ abstract class Drunit
     }
 
     /**
+     * Enables given module(s) at given location by symlinking their contents
      *
-     * Enter description here ...
-     * @param  unknown_type              $loc
-     * @param  unknown_type              $name
+     * @param string            $loc  the location the module(s) can be found
+     * @param array|string|null $name the name(s) of the module(s). Defaults to basename($loc).
+     *
      * @throws \InvalidArgumentException
      */
     public static function enableModule($loc, $name = null)
