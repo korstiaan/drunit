@@ -49,7 +49,6 @@ abstract class Drunit
         drupal_static('system_rebuild_module_data',null,true);
         
         module_enable((array) ($name ?: $base));
-        module_load_all();
 		module_invoke_all('boot');
 		module_invoke_all('init');
     }
