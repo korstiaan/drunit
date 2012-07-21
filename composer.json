@@ -1,7 +1,7 @@
 {
     "name": "korstiaan/drunit",
     "description": "Drupal bootstrapper to ease unit testing Drupal modules",
-    "keywords": ["drupal"],
+    "keywords": ["drupal", "unittest"],
     "homepage": "http://korstiaan.com/drunit",
     "license": "MIT",
     "authors": [
