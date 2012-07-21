@@ -19,15 +19,15 @@ abstract class Drunit
     public static function bootstrap()
     {
         static $done = null; if (true === $done) return; $done = true;
-         
+
         require_once __DIR__.'/../bootstrap.php';
     }
-    
+
     /**
-     * 
+     *
      * Enter description here ...
-     * @param unknown_type $loc
-     * @param unknown_type $name
+     * @param  unknown_type              $loc
+     * @param  unknown_type              $name
      * @throws \InvalidArgumentException
      */
     public static function enableModule($loc, $name = null)
@@ -37,7 +37,7 @@ abstract class Drunit
             throw new \InvalidArgumentException(sprintf('Unable to read directory %s', $loc));
         }
         $base = basename($loc);
-        
+
         $link = DRUPAL_ROOT."/sites/all/modules/{$base}";
         if (!is_dir($link)) {
             symlink($loc, $link);

@@ -19,30 +19,30 @@ class DrunitTest extends \PHPUnit_Framework_TestCase
     {
         Drunit::bootstrap();
     }
-    
+
     public function testBootstrapped()
     {
         $this->assertSame(\DRUPAL_BOOTSTRAP_FULL, drupal_bootstrap());
     }
-    
+
     public function testSingleModuleEnable()
-    {   
+    {
         Drunit::enableModule(__DIR__.'/../../modules/drunit_test');
-        
+
         $this->assertTrue(function_exists('drunit_test'));
     }
-    
+
     public function testMultipleModuleEnable()
-    {   
+    {
         Drunit::enableModule(__DIR__.'/../../modules/multi', array(
             'drunit_test2',
-        	'drunit_test3',
+            'drunit_test3',
         ));
-        
+
         $this->assertTrue(function_exists('drunit_test2'));
         $this->assertTrue(function_exists('drunit_test3'));
     }
-    
+
     /**
      * @expectedException InvalidArgumentException
      */
@@ -50,5 +50,5 @@ class DrunitTest extends \PHPUnit_Framework_TestCase
     {
         Drunit::enableModule(__DIR__.'/../../modules/foobar');
     }
-    
+
 }
