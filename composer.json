@@ -1,0 +1,36 @@
+{
+    "name": "korstiaan/drunit",
+    "description": "Drupal bootstrapper to ease unit testing Drupal modules",
+    "keywords": ["drupal"],
+    "homepage": "http://korstiaan.com/drunit",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Korstiaan de Ridder",
+            "email": "korstiaan@korstiaan.com",
+            "homepage": "http://www.korstiaan.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "drupal/drupal",
+                "version": "7.14",
+                "source": {
+                    "url": "http://git.drupal.org/project/drupal.git",
+                    "type": "git",
+                    "reference": "7.14"
+                }
+            }
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Drunit": "src/"
+        }
+    },  
+    "require": {
+        "drupal/drupal": "7.*" 
+    }
+}

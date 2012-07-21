@@ -1,0 +1,5 @@
+name 		= "Drunit test2"
+package 	= "Drunit"
+description = "Drunit test2"
+core 		= "7.x"
+php 		= 5.3.2
