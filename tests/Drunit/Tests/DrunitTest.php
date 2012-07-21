@@ -18,6 +18,7 @@ class DrunitTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         Drunit::bootstrap();
+        Drunit::enableModule(__DIR__.'/../../modules/drunit_test');
     }
 
     public function testBootstrapped()
@@ -27,8 +28,6 @@ class DrunitTest extends \PHPUnit_Framework_TestCase
 
     public function testSingleModuleEnable()
     {
-        Drunit::enableModule(__DIR__.'/../../modules/drunit_test');
-
         $this->assertTrue(function_exists('drunit_test'));
     }
 
@@ -41,6 +40,12 @@ class DrunitTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue(function_exists('drunit_test2'));
         $this->assertTrue(function_exists('drunit_test3'));
+    }
+    
+    public function testHooks()
+    {
+        $this->assertTrue(in_array('init',drunit_test_static()));
+        $this->assertTrue(in_array('boot',drunit_test_static()));
     }
 
     /**

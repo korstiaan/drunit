@@ -13,3 +13,22 @@ function drunit_test()
 {
     return __FUNCTION__;
 }
+
+function drunit_test_init()
+{
+    drunit_test_static('init');    
+}
+
+function drunit_test_boot()
+{
+    drunit_test_static('boot');    
+}
+
+function drunit_test_static($val = null) 
+{
+    static $a = array();
+    if (null !== $val) {
+        $a[] = $val;
+    }
+    return $a;
+}
