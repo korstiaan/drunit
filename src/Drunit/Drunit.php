@@ -46,6 +46,8 @@ abstract class Drunit
             symlink($loc, $link);
         }
         
+        drupal_static('system_rebuild_module_data',null,true);
+        
         module_enable((array) ($name ?: $base));
     }
 }
