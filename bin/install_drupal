@@ -18,7 +18,7 @@ if (!is_dir(DRUPAL_ROOT)) {
 chdir(DRUPAL_ROOT);
 
 require DRUPAL_ROOT.'/includes/install.core.inc';
-$db = __DIR__.'/../baseline/drupal2.db';
+$db = __DIR__.'/../baseline/drupal.db';
 
 if (file_exists($db)) {
     unlink($db);
