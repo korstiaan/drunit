@@ -1,9 +1,9 @@
 {
-    "hash": "150b182fa6061bc750d06d1f3bd72a28",
+    "hash": "e972d6d5d481952d6a0f75f04dc97d99",
     "packages": [
         {
-            "package": "drupal/drupal",
-            "version": "7.14"
+            "package": "korstiaan/drupal-mirror",
+            "version": "v7.14.1"
         }
     ],
     "packages-dev": null,

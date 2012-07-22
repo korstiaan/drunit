@@ -11,26 +11,12 @@
             "homepage": "http://www.korstiaan.com"
         }
     ],
-    "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "name": "drupal/drupal",
-                "version": "7.14",
-                "source": {
-                    "url": "http://git.drupal.org/project/drupal.git",
-                    "type": "git",
-                    "reference": "7.14"
-                }
-            }
-        }
-    ],
     "autoload": {
         "psr-0": {
             "Drunit": "src/"
         }
     },  
     "require": {
-        "drupal/drupal": "7.*" 
+        "korstiaan/drupal-mirror": "v7.14.1" 
     }
 }
