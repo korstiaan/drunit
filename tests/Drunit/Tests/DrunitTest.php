@@ -23,6 +23,7 @@ class DrunitTest extends \PHPUnit_Framework_TestCase
 
     public function testBootstrapped()
     {
+        $this->assertTrue(defined('DRUPAL_ROOT'));
         $this->assertSame(\DRUPAL_BOOTSTRAP_FULL, drupal_bootstrap());
     }
 

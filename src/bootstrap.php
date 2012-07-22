@@ -9,9 +9,21 @@
  * with this source code in the file LICENSE.
  */
 
-define('DRUPAL_ROOT', realpath(__DIR__.'/../vendor/korstiaan/drupal-mirror'));
+if (defined('DRUPAL_PATH')) {
+    define('DRUPAL_ROOT', realpath(DRUPAL_PATH));
+} else {
+    foreach (array(
+        realpath(__DIR__.'/../vendor/korstiaan/drupal-mirror'),
+        realpath(__DIR__.'/../../drupal-mirror'),
+    ) as $path) {
+        if (is_dir($path)) {
+            define('DRUPAL_ROOT', $path);
+            continue;
+        }
+    }
+}
 
-if (!is_dir(DRUPAL_ROOT)) {
+if (!defined('DRUPAL_ROOT') || !is_dir(DRUPAL_ROOT)) {
     throw new \RuntimeException('Drupal not found, make sure you have installed dependencies');
 }
 
