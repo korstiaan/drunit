@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
  
-define('DRUPAL_ROOT',realpath(__DIR__.'/../vendor/drupal/drupal'));
+define('DRUPAL_ROOT',realpath(__DIR__.'/../vendor/korstiaan/drupal-mirror'));
 
 if (!is_dir(DRUPAL_ROOT)) {
     throw new \RuntimeException('Drupal not found, unable to install');
