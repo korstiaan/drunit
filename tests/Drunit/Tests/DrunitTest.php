@@ -42,13 +42,13 @@ class DrunitTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(function_exists('drunit_test2'));
         $this->assertTrue(function_exists('drunit_test3'));
     }
-    
+
     public function testSingleModuleBaseEnable()
     {
         Drunit::enableModule(__DIR__.'/../../modules/drunit_test4');
         $this->assertTrue(function_exists('drunit_test4'));
     }
-    
+
     public function testHooks()
     {
         Drunit::enableModule(__DIR__.'/../../modules/drunit_test5', array('drunit_test5'));
@@ -56,12 +56,19 @@ class DrunitTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(in_array('boot',drunit_test5_static()));
     }
 
+      /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testInvalidModuleException()
+    {
+        Drunit::enableModule(__DIR__.'/../../modules/drunit_test6');
+    }
+
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testModuleException()
+    public function testInvalidLocationException()
     {
         Drunit::enableModule(__DIR__.'/../../modules/foobar');
     }
-
 }

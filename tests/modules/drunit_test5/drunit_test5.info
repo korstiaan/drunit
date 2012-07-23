@@ -1,5 +1,5 @@
-name 		= "Drunit test"
+name 		= "Drunit test 5"
 package 	= "Drunit"
-description = "Drunit test"
+description = "Drunit test 5"
 core 		= "7.x"
 php 		= 5.3.2

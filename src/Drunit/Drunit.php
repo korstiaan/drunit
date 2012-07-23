@@ -34,22 +34,28 @@ abstract class Drunit
     public static function enableModule($loc, $name = null)
     {
         $loc = rtrim($loc, '/');
-        
+
         if (!is_dir($loc) || !is_readable($loc)) {
             throw new \InvalidArgumentException(sprintf('Unable to read directory %s', $loc));
         }
-        
+
         $base = basename($loc);
 
         $link = DRUPAL_ROOT."/sites/all/modules/{$base}";
         if (!is_dir($link)) {
             symlink($loc, $link);
         }
-        
+
         drupal_static('system_rebuild_module_data', null, true);
-        
-        module_enable((array) ($name ?: $base));
-		module_invoke_all('boot');
-		module_invoke_all('init');
+
+        $modules = (array) ($name ?: $base);
+        $enabled = module_enable($modules);
+
+        if (false === $enabled) {
+            throw new \InvalidArgumentException(sprintf('Unable to enable module(s) "%s"', implode(',', $modules)));
+        }
+
+        module_invoke_all('boot');
+        module_invoke_all('init');
     }
 }
