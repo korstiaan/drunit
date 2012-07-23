@@ -33,7 +33,7 @@ abstract class Drunit
      */
     public static function enableModule($loc, $name = null)
     {
-        $loc = realpath(rtrim($loc, '/'));
+        $loc = rtrim($loc, '/');
         
         if (!is_dir($loc) || !is_readable($loc)) {
             throw new \InvalidArgumentException(sprintf('Unable to read directory %s', $loc));
