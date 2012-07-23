@@ -9,22 +9,22 @@
  * with this source code in the file LICENSE.
  */
 
-function drunit_test()
+function drunit_test5()
 {
     return __FUNCTION__;
 }
 
-function drunit_test_init()
+function drunit_test5_init()
 {
-    drunit_test_static('init');    
+    drunit_test5_static('init');    
 }
 
-function drunit_test_boot()
+function drunit_test5_boot()
 {
-    drunit_test_static('boot');    
+    drunit_test5_static('boot');    
 }
 
-function drunit_test_static($val = null) 
+function drunit_test5_static($val = null) 
 {
     static $a = array();
     if (null !== $val) {
