@@ -1,16 +1,16 @@
-## Drunit for Drupal 7.x
+# Drunit for Drupal 7.x
 
 Drupal bootstrapper to ease unit testing your Drupal modules. 
 
 [![Build Status](https://secure.travis-ci.org/korstiaan/drunit.png)](http://travis-ci.org/korstiaan/drunit)
 
-### Requirements
+## Requirements
 
 * PHP 5.3.* (unfortunately the SQLite implementation in Drupal is not compatible with PHP 5.4)
 * PDO SQLite driver
 * Any other extension Drupal 7.14 requires
 
-### Installation
+## Installation
 
 The recommended way to install `Drunit` is with [composer](http://getcomposer.org). 
 Just add the following to your `composer.json`:
@@ -30,11 +30,11 @@ Now update composer and install the newly added requirement and its dependencies
 $ php composer.phar update korstiaan/drunit --dev
 ```
 
-### Usage
+## Usage
 
 To bootstrap Drupal and enable your module(s) in your unit tests you need to add a few lines to your `phpunit`s bootstrapping.
 
-#### Bootstrap Drupal
+### Bootstrap Drupal
 
 First bootstrap Drupal itself (including `composer`):
 
@@ -49,7 +49,7 @@ Drunit::bootstrap();
 
 This will bring Drupals bootstrapping to its final phase `DRUPAL_BOOTSTRAP_FULL`.
 
-#### Enable your module(s)
+### Enable your module(s)
 
 Next enable a module by adding the following: 
 
@@ -74,6 +74,6 @@ If your module name is the same as the base name of the directory you can leave 
 Drunit::enableModule(__DIR__.'/../modules/my_module1');
 ```
 
-## License
+# License
 
 Drunit is licensed under the MIT license.
