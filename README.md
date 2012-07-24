@@ -6,7 +6,7 @@ Drupal bootstrapper to ease unit testing your Drupal modules.
 
 ## Requirements
 
-* PHP 5.3.* (unfortunately the SQLite implementation in Drupal is not compatible with PHP 5.4)
+* PHP 5.3.3+ (unfortunately the SQLite implementation in Drupal is not compatible with PHP 5.4)
 * PDO SQLite driver
 * Any other extension Drupal 7.14 requires
 
