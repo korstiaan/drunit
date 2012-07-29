@@ -43,7 +43,7 @@ abstract class Drunit
 
         $link = DRUPAL_ROOT."/sites/all/modules/{$base}";
         
-        if (readlink($link)) {
+        if (file_exists($link) && readlink($link)) {
             unlink($link);    
         }
         
