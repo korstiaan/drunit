@@ -42,10 +42,13 @@ abstract class Drunit
         $base = basename($loc);
 
         $link = DRUPAL_ROOT."/sites/all/modules/{$base}";
-        if (!is_dir($link)) {
-            symlink($loc, $link);
+        
+        if (readlink($link)) {
+            unlink($link);    
         }
-
+        
+        symlink($loc, $link);
+        
         drupal_static('system_rebuild_module_data', null, true);
 
         $modules = (array) ($name ?: $base);
