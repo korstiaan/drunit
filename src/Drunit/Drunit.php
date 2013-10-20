@@ -18,9 +18,12 @@ abstract class Drunit
      */
     public static function bootstrap()
     {
-        static $done = null; if (true === $done) return; $done = true;
-
-        require_once __DIR__.'/../bootstrap.php';
+        if (defined('DRUPAL_ROOT')) {
+            chdir(DRUPAL_ROOT);
+        } else {
+            require_once __DIR__.'/../bootstrap.php';
+        }
+        
     }
 
     /**
@@ -40,7 +43,6 @@ abstract class Drunit
         }
 
         $base = basename($loc);
-
         $link = DRUPAL_ROOT."/sites/all/modules/{$base}";
         
         if (file_exists($link) && readlink($link)) {
