@@ -1,7 +1,7 @@
 {
     "name": "korstiaan/drunit",
-    "description": "Drupal bootstrapper to ease unit testing your Drupal modules",
-    "keywords": ["drupal", "unittest"],
+    "description": "Drupal bootstrapper to ease integration/functional testing your Drupal modules",
+    "keywords": ["drupal", "testing"],
     "homepage": "http://korstiaan.com/drunit",
     "license": "MIT",
     "authors": [
@@ -17,6 +17,9 @@
         }
     },  
     "require": {
-        "korstiaan/drupal-mirror": "v7.14.1" 
+        "korstiaan/drupal-mirror": "v7.14.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
     }
 }

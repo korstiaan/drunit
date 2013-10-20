@@ -1,6 +1,6 @@
 # Drunit for Drupal 7.x
 
-Drupal bootstrapper to ease unit testing your Drupal modules. 
+Drupal bootstrapper to ease integration/functional testing your Drupal modules. 
 
 [![Build Status](https://secure.travis-ci.org/korstiaan/drunit.png)](http://travis-ci.org/korstiaan/drunit)
 
@@ -8,7 +8,7 @@ Drupal bootstrapper to ease unit testing your Drupal modules.
 
 * PHP 5.3.3+ (unfortunately the SQLite implementation in Drupal is not compatible with PHP 5.4)
 * PDO SQLite driver
-* Any other extension Drupal 7.14 requires
+* Any other extension Drupal 7.* requires
 
 ## Installation
 
