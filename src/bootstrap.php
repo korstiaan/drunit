@@ -13,8 +13,8 @@ if (defined('DRUPAL_PATH')) {
     define('DRUPAL_ROOT', realpath(DRUPAL_PATH));
 } else {
     foreach (array(
-        realpath(__DIR__.'/../vendor/korstiaan/drupal-mirror'),
-        realpath(__DIR__.'/../../drupal-mirror'),
+        realpath(__DIR__.'/../vendor/drupal/core'),
+        realpath(__DIR__.'/../../core'),
     ) as $path) {
         if (is_dir($path)) {
             define('DRUPAL_ROOT', $path);
