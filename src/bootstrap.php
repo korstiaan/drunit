@@ -29,7 +29,7 @@ if (!defined('DRUPAL_ROOT') || !is_dir(DRUPAL_ROOT)) {
 
 $db   = sys_get_temp_dir().'/drupal_'.uniqid(md5(DRUPAL_ROOT),true).'.db';
 
-$copy = @copy(__DIR__.'/../baseline/drupal.db',$db);
+$copy = @copy(__DIR__.'/../db/drupal.db', $db);
 
 if (false === $copy || !file_exists($db)) {
     throw new \RuntimeException(sprintf('Unable to copy Drupal baseline to %s',$db));

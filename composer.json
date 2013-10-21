@@ -30,7 +30,9 @@
        }
     ],
     "require": {
-        "drupal/core": "7.23"
+        "drupal/core": "7.23",
+        "drush/drush": "6.0.*",
+        "symfony/process": "*"
      },
     "autoload": {
         "psr-0": {
@@ -39,5 +41,13 @@
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Drunit\\Composer\\ScriptHandler::installDrupal"
+        ],
+        "post-update-cmd": [
+            "Drunit\\Composer\\ScriptHandler::installDrupal"
+        ]
     }
 }
