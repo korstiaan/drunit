@@ -20,7 +20,7 @@
                "source": {
                    "url": "http://git.drupal.org/project/drupal.git",
                    "type": "git",
-                   "reference": "start"
+                   "reference": "7.23"
                },
                "dist": {
                    "url": "http://ftp.drupal.org/files/projects/drupal-7.23.zip",
