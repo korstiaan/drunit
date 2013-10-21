@@ -32,12 +32,7 @@ class Installer
         }
         
         // Drush messes with file permissions, so correct those first
-        $settingsFile = "{$drupal}/sites/default/settings.php";
-        chmod(dirname($settingsFile), 0777);
-        if (file_exists($settingsFile)) {
-            chmod($settingsFile, 0777);
-            unlink($settingsFile);
-        }
+        $this->fixPermissions($drupal);
         
         $process = $this->getProcess($drupal, $dsn);
 
@@ -46,6 +41,21 @@ class Installer
         if (!$process->isSuccessful()) {
             throw new \RuntimeException($process->getErrorOutput());
         }
+    }
+    
+    protected function fixPermissions($drupal) 
+    {
+        $settingsDir  = "{$drupal}/sites/default";
+        $settingsFile = "{$settingsDir}/settings.php";
+        if (!is_dir($settingsDir)) {
+            return;
+        }
+        chmod($settingsDir, 0777);
+        if (!file_exists($settingsFile)) {
+            return;
+        }
+        chmod($settingsFile, 0777);
+        unlink($settingsFile);
     }
     
     protected function getProcess($drupal, $dsn)
@@ -60,3 +70,4 @@ class Installer
         return $process;
     }
 }
+
