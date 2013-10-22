@@ -14,9 +14,9 @@ if (defined('DRUPAL_PATH')) {
 } else {
     foreach (array(
         realpath(__DIR__.'/../vendor/drupal/core'),
-        realpath(__DIR__.'/../../core'),
+        realpath(__DIR__.'/../../../drupal/core'),
     ) as $path) {
-        if (is_dir($path)) {
+        if ($path && is_dir($path)) {
             define('DRUPAL_ROOT', $path);
             continue;
         }
