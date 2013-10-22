@@ -31,8 +31,7 @@ class Installer
             throw new \InvalidArgumentException('Unable to find Drupal dir');
         }
         
-        // Drush messes with file permissions, so correct those first
-        $this->fixPermissions($drupal);
+        $this->resetSettings($drupal);
         
         $process = $this->getProcess($drupal, $dsn);
 
@@ -41,21 +40,21 @@ class Installer
         if (!$process->isSuccessful()) {
             throw new \RuntimeException($process->getErrorOutput());
         }
+        $this->resetSettings($drupal);
     }
     
-    protected function fixPermissions($drupal) 
+    protected function resetSettings($drupal) 
     {
         $settingsDir  = "{$drupal}/sites/default";
         $settingsFile = "{$settingsDir}/settings.php";
-        if (!is_dir($settingsDir)) {
-            return;
+        if (is_dir($settingsDir)) {
+            // Drush messes with file permissions, so correct those first
+            chmod($settingsDir, 0777);
+            if (file_exists($settingsFile)) {
+                chmod($settingsFile, 0777);
+                unlink($settingsFile);
+            }    
         }
-        chmod($settingsDir, 0777);
-        if (!file_exists($settingsFile)) {
-            return;
-        }
-        chmod($settingsFile, 0777);
-        unlink($settingsFile);
     }
     
     protected function getProcess($drupal, $dsn)
