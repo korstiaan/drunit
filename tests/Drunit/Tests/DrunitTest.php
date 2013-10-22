@@ -11,15 +11,12 @@
 
 namespace Drunit\Tests;
 
+use Drunit\TestCase;
+
 use Drunit\Drunit;
 
-class DrunitTest extends \PHPUnit_Framework_TestCase
+class DrunitTest extends TestCase
 {
-    public function setUp()
-    {
-        Drunit::bootstrap();
-    }
-
     public function testBootstrapped()
     {
         $this->assertTrue(defined('DRUPAL_ROOT'));

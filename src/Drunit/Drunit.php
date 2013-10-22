@@ -18,12 +18,7 @@ abstract class Drunit
      */
     public static function bootstrap()
     {
-        if (defined('DRUPAL_ROOT')) {
-            chdir(DRUPAL_ROOT);
-        } else {
-            require_once __DIR__.'/../bootstrap.php';
-        }
-        
+       require __DIR__.'/../bootstrap.php';
     }
 
     /**
