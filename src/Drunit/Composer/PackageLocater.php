@@ -34,7 +34,7 @@ class PackageLocater
             return $dir;
         }
         
-        throw new \RuntimeException(sprintf('Unable to locate package in %s', $root));
+        throw new \RuntimeException(sprintf('Unable to locate package %s in %s', $package, $root));
     }
     
     private function getVendorRoot() 
