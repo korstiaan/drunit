@@ -17,11 +17,6 @@
            "package": {
                "version": "7.23",
                "name": "drupal/core",
-               "source": {
-                   "url": "http://git.drupal.org/project/drupal.git",
-                   "type": "git",
-                   "reference": "7.23"
-               },
                "dist": {
                    "url": "http://ftp.drupal.org/files/projects/drupal-7.23.zip",
                    "type": "zip"
@@ -30,7 +25,7 @@
        }
     ],
     "require": {
-        "drupal/core": "7.23",
+        "drupal/core": "*",
         "drush/drush": "6.0.*",
         "symfony/process": "*"
      },
