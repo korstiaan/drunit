@@ -22,7 +22,7 @@ class PackageLocater
             throw new \InvalidArgumentException(sprintf('%s isn\'t a valid directory', $root));
         }
         
-        $this->root = $root;
+        $this->root = realpath($root);
     }
     
     public function locate($package)
