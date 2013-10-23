@@ -11,34 +11,39 @@
 
 namespace Drunit\Tests;
 
+use Drunit\Composer\PackageLocater;
+
 use Drunit\TestCase;
 
 use Drunit\Installer;
 
 use Drunit\Drunit;
 
-class InstallerTest extends TestCase
+class InstallerTest extends \PHPUnit_Framework_TestCase
 {
+    protected $locater;
+    protected $installer;
+    protected $drupal;
     public function setUp()
     {
-        Drunit::bootstrap();
+        $this->locater = new PackageLocater(__DIR__);
+        $this->installer = new Installer($this->locater->locate('drush/drush').'/drush');
+        $this->drupal = $this->locater->locate('drupal/core');
     }
     
     public function testReinstall()
     { 
-        $installer = new Installer(__DIR__.'/../../../vendor/bin/drush');
         $db = sys_get_temp_dir().'/foo.'.uniqid(null,true).'.db';
-        $install = $installer->reinstall(DRUPAL_ROOT, "sqlite:{$db}");
+        $install = $this->installer->reinstall($this->drupal, "sqlite:{$db}");
         $this->assertNull($install);
         $this->assertTrue(file_exists($db));
     }
     
     public function testSettingsRemoved()
     {
-        $installer = new Installer(__DIR__.'/../../../vendor/bin/drush');
         $db = sys_get_temp_dir().'/foo.'.uniqid(null,true).'.db';
-        $install = $installer->reinstall(DRUPAL_ROOT, "sqlite:{$db}");
-        $this->assertFalse(file_exists(DRUPAL_ROOT.'/sites/default/settings.php'));
+        $install = $this->installer->reinstall($this->drupal, "sqlite:{$db}");
+        $this->assertFalse(file_exists($this->drupal.'/sites/default/settings.php'));
     }
     
     /**
@@ -54,8 +59,7 @@ class InstallerTest extends TestCase
      */
     public function testNoDrupal()
     {
-        $installer = new Installer(__DIR__.'/../../../vendor/bin/drush');
-        $install = $installer->reinstall('/foo/bar', null);
+        $install = $this->installer->reinstall('/foo/bar', null);
     }
     
     /**
@@ -63,7 +67,6 @@ class InstallerTest extends TestCase
      */
     public function testInvalidInstall()
     {
-        $installer = new Installer(__DIR__.'/../../../vendor/bin/drush');
-        $install = $installer->reinstall(sys_get_temp_dir(), "sqlite:foo");
+        $install = $this->installer->reinstall(sys_get_temp_dir(), "sqlite:foo");
     }
 }
