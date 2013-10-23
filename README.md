@@ -32,22 +32,31 @@ $ php composer.phar update korstiaan/drunit --dev
 
 ## Usage
 
-To bootstrap Drupal and enable your module(s) in your unit tests you need to add a few lines to your `phpunit`s bootstrapping.
-
 ### Bootstrap Drupal
 
-First bootstrap Drupal itself (including `composer`):
+First initialize composer's autoloading by including it in your tests bootstrap file:
 
 ```php
 // tests/bootstrap.php
 use Drunit\Drunit;
 
 require __DIR__ . '/../vendor/autoload.php';
-
-Drunit::bootstrap();
+ 
 ```
 
-This will bring Drupals bootstrapping to its final phase `DRUPAL_BOOTSTRAP_FULL`.
+### Bootstrap Drupal on each test
+
+`Drunit` provides a TestCase class which bootstraps Drupal to its final phase `DRUPAL_BOOTSTRAP_FULL` 
+and makes sure each test is run in its own isolated process. Just extend it to make use of it:
+
+```php
+use Drunit\TestCase;
+
+class FooTest extends TestCase 
+{
+    ...
+}
+```
 
 ### Enable your module(s)
 
