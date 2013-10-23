@@ -17,12 +17,38 @@ Just add the following to your `composer.json`:
 
 ```json
    {
+       "repositories": [
+           ...
+           {
+              "type": "package",
+              "package": {
+                  "version": "7.23",
+                  "name": "drupal/core",
+                  "dist": {
+                      "url": "http://ftp.drupal.org/files/projects/drupal-7.23.zip",
+                      "type": "zip"
+                  }
+              }
+           }
+       ],
        "require-dev": {
        	   ...
            "korstiaan/drunit": "*"
+       },
+       "scripts": {
+           "post-install-cmd": [
+               ...
+               "Drunit\\Composer\\ScriptHandler::installDrupal"
+           ],
+           "post-update-cmd": [
+               ...
+               "Drunit\\Composer\\ScriptHandler::installDrupal"
+           ]
        }
    }
 ```
+
+And change the versions in the `drupal/core` definition to match the Drupal version you want to test with. 
 
 Now update composer and install the newly added requirement and its dependencies:
 
@@ -60,12 +86,20 @@ class FooTest extends TestCase
 
 ### Enable your module(s)
 
-Next enable a module by adding the following: 
+To enabled your modules in a test just add the following to your test: 
 
 ```php
-// tests/bootstrap.php
+use Drunit\TestCase;
 
-Drunit::enableModule(__DIR__.'/../module', array('my_module'));
+class FooTest extends TestCase
+{
+    public function setUp()
+    {
+        parent::setUp();
+        Drunit::enableModule(__DIR__.'/../module', array('my_module'));
+    }
+    ...
+}
 ```
 
 This will enable module `my_module` located at `__ROOT__.'/module'` (Drupal recursively looks for file `my_module.module`).
