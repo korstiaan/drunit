@@ -19,7 +19,7 @@ class PackageLocater
     public function __construct($root) 
     {
         if (!is_dir($root)) {
-            throw new \RuntimeException(sprintf('%s isn\'t a valid directory', $root));
+            throw new \InvalidArgumentException(sprintf('%s isn\'t a valid directory', $root));
         }
         
         $this->root = $root;
