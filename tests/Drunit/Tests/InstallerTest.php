@@ -27,25 +27,25 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->locater = new PackageLocater(__DIR__);
-        $this->installer = new Installer($this->locater->locate('drush/drush').'/drush');
+        $this->installer = new Installer($this->locater->locate('drush/drush').'/drush.php');
         $this->drupal = $this->locater->locate('drupal/core');
     }
-    
+
     public function testReinstall()
-    { 
+    {
         $db = sys_get_temp_dir().'/foo.'.uniqid(null,true).'.db';
         $install = $this->installer->reinstall($this->drupal, "sqlite:{$db}");
         $this->assertNull($install);
         $this->assertTrue(file_exists($db));
     }
-    
+
     public function testSettingsRemoved()
     {
         $db = sys_get_temp_dir().'/foo.'.uniqid(null,true).'.db';
         $install = $this->installer->reinstall($this->drupal, "sqlite:{$db}");
         $this->assertFalse(file_exists($this->drupal.'/sites/default/settings.php'));
     }
-    
+
     /**
      * @expectedException InvalidArgumentException
      */
@@ -53,7 +53,7 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
     {
         $installer = new Installer('/foo/bar');
     }
-    
+
     /**
      * @expectedException InvalidArgumentException
      */
@@ -61,7 +61,7 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
     {
         $install = $this->installer->reinstall('/foo/bar', null);
     }
-    
+
     /**
      * @expectedException RuntimeException
      */

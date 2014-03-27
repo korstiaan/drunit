@@ -24,26 +24,26 @@ class Installer
             throw new \InvalidArgumentException('Unable to find drush');
         }
     }
-    
-    public function reinstall($drupal, $dsn) 
+
+    public function reinstall($drupal, $dsn)
     {
         if (!is_dir($drupal)) {
             throw new \InvalidArgumentException('Unable to find Drupal dir');
         }
-        
+
         $this->resetSettings($drupal);
-        
+
         $process = $this->getProcess($drupal, $dsn);
 
         $process->run();
-        
+
         if (!$process->isSuccessful()) {
             throw new \RuntimeException($process->getErrorOutput());
         }
         $this->resetSettings($drupal);
     }
-    
-    protected function resetSettings($drupal) 
+
+    protected function resetSettings($drupal)
     {
         $settingsDir  = "{$drupal}/sites/default";
         $settingsFile = "{$settingsDir}/settings.php";
@@ -53,18 +53,18 @@ class Installer
             if (file_exists($settingsFile)) {
                 chmod($settingsFile, 0777);
                 unlink($settingsFile);
-            }    
+            }
         }
     }
-    
+
     protected function getProcess($drupal, $dsn)
     {
         $builder = new ProcessBuilder();
         $builder->inheritEnvironmentVariables(true);
         $builder->setWorkingDirectory($drupal);
-        
-        $builder->setPrefix($this->drush);
-        $builder->setArguments(array('site-install', 'standard', "--db-url={$dsn}", '-y'));
+
+        $builder->setPrefix('php');
+        $builder->setArguments(array('-d sendmail_path=`which true`', $this->drush,'site-install', 'standard', "--db-url={$dsn}", '-y'));
         $process = $builder->getProcess();
         return $process;
     }
